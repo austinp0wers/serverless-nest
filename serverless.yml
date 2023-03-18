@@ -1,0 +1,16 @@
+service: my-serverless-app
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: ap-northeast-2
+functions:
+  app:
+    handler: dist/main.handler
+    events:
+      - http:
+          path: /
+          method: any
+          cors: true
+      - http:
+          path: '{proxy+}'
+          method: any
